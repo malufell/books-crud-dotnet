@@ -1,3 +1,4 @@
+using BooksWebApi.Data.VO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BooksWebApi.Controllers;
@@ -25,7 +26,7 @@ public class BookController(IBookService bookService) : Controller
   }
 
   [HttpPost]
-  public IActionResult Create([FromBody] Book book)
+  public IActionResult Create([FromBody] BookVO book)
   {
 
     if (book == null) return BadRequest();
@@ -34,7 +35,7 @@ public class BookController(IBookService bookService) : Controller
   }
 
   [HttpPut]
-  public IActionResult Update([FromBody] Book book)
+  public IActionResult Update([FromBody] BookVO book)
   {
 
     if (book == null) return BadRequest();
