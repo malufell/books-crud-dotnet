@@ -29,6 +29,11 @@ builder.Services.AddScoped<IBookService, BookServiceImplementation>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<BookConverter>();
 
+builder.Services.AddMvc(options => {
+  options.RespectBrowserAcceptHeader = true;
+  options.FormatterMappings.SetMediaTypeMappingForFormat("xml", "application/xml");
+  options.FormatterMappings.SetMediaTypeMappingForFormat("json", "application/json");
+}).AddXmlSerializerFormatters();
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
