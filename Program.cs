@@ -9,6 +9,11 @@ using MySqlConnector;
 using EvolveDb;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options => options.AddDefaultPolicy(builder => {
+  builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(); 
+}));
+
 builder.Services.AddControllers();
 
 // Database
@@ -41,6 +46,7 @@ builder.Services.AddEndpointsApiExplorer();
 var app = builder.Build();
 
 app.UseRouting();
+app.UseCors(); // tem que colocar no lugar certo para funcionar 
 app.MapControllerRoute(
     name: "default",
     pattern: "api/{controller=Book}/{action=Get}/{id?}");
