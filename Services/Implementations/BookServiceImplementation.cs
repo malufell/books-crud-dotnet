@@ -3,9 +3,9 @@ using BooksWebApi.Repository;
 
 namespace BooksWebApi.Services.Implementations;
 
-public class BookServiceImplementation(IBookRepository repository) : IBookService
+public class BookServiceImplementation(IRepository<Book> repository) : IBookService
 {
-    private readonly IBookRepository _repository = repository;
+    private readonly IRepository<Book> _repository = repository;
 
     public List<Book> FindAll()
     {

@@ -1,11 +1,11 @@
-using BooksWebApi.Repository;
-using BooksWebApi.Repository.Implementations;
 using BooksWebApi.Models.Context;
 using BooksWebApi.Services.Implementations;
 using BooksWebApi.Controllers;
 using Microsoft.EntityFrameworkCore;
 using MySqlConnector;
 using EvolveDb;
+using BooksWebApi.Repository;
+using BooksWebApi.Repository.Generic;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
@@ -24,8 +24,8 @@ if (builder.Environment.IsDevelopment())
 }
 
 // Dependency Injection
-builder.Services.AddScoped<IBookRepository, BookRepositoryImplementation>();
 builder.Services.AddScoped<IBookService, BookServiceImplementation>();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
 
 // Add services to the container.

@@ -1,11 +1,10 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using BooksWebApi.Model.Base;
 
 namespace BooksWebApi.Controllers;
 
 [Table("books")]
-public class Book {
-    [Column("id")]
-    public long Id { get; set; }
+public class Book : BaseEntity {
 
     [Column("author")]
     public string Author { get; set; }
