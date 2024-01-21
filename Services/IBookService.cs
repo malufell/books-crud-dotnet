@@ -8,6 +8,8 @@ public interface IBookService
 
 	BookVO FindByID(long id);
 
+	List<BookVO> FindByName(string firstName, string? lastName);
+
 	List<BookVO> FindAll();
 
 	BookVO Update(BookVO book);

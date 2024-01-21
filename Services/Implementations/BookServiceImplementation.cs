@@ -5,7 +5,7 @@ using BooksWebApi.Repository;
 
 namespace BooksWebApi.Services.Implementations;
 
-public class BookServiceImplementation(IRepository<Book> repository, BookConverter converter) : IBookService
+public class BookServiceImplementation(IBookRepository repository, BookConverter converter) : IBookService
 {
 
   /*
@@ -13,7 +13,7 @@ public class BookServiceImplementation(IRepository<Book> repository, BookConvert
 	por isso recebo um 'bookVO' e faço a conversão para um objeto na mesma estrutura da entidade (mesmo formato que o banco espera)
 	*/
   private readonly BookConverter _converter = converter;
-  private readonly IRepository<Book> _repository = repository;
+  private readonly IBookRepository _repository = repository;
 
   public List<BookVO> FindAll()
   {
@@ -23,6 +23,11 @@ public class BookServiceImplementation(IRepository<Book> repository, BookConvert
   public BookVO FindByID(long id)
   {
     return _converter.Parse(_repository.FindByID(id));
+  }
+
+  public List<BookVO> FindByName(string firstName, string? lastName)
+  {
+    return _converter.Parse(_repository.FindByName(firstName, lastName));
   }
 
   public BookVO Create(BookVO book)

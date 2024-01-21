@@ -25,6 +25,16 @@ public class BookController(IBookService bookService) : Controller
     return Ok(book);
   }
 
+  [HttpGet("findBookByName")]
+  public IActionResult Get([FromQuery] string firstName, [FromQuery] string? lastName)
+  {
+    var book = _bookService.FindByName(firstName, lastName);
+
+    if (book == null) return NotFound();
+
+    return Ok(book);
+  }
+
   [HttpPost]
   public IActionResult Create([FromBody] BookVO book)
   {

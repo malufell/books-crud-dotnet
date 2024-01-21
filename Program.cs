@@ -31,6 +31,7 @@ if (builder.Environment.IsDevelopment())
 
 // Dependency Injection
 builder.Services.AddScoped<IBookService, BookServiceImplementation>();
+builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<BookConverter>();
 
